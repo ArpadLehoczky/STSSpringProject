@@ -1,0 +1,18 @@
+package com.stsproject.repository;
+
+import java.util.List;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.stsproject.domain.Story;
+
+public interface StoryRepository extends CrudRepository<Story, Long> {
+
+	//SELECT * FROM STOIES
+	List<Story> findAll();
+	
+	//SELECT * FROM STORY WHERE posted IN (SELECT max(posted) FROM story) LIMIT 1;
+	Story findFirstByOrderByPostedDesc();
+
+	Story findByTitle(String title);
+}
